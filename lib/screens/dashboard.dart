@@ -1,4 +1,5 @@
 import 'package:bytebank/screens/contacts_list.dart';
+import 'package:bytebank/screens/transactions_list.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatelessWidget {
@@ -24,7 +25,7 @@ class Dashboard extends StatelessWidget {
                   _showContactsList(context);
                 }),
                 _FeatureItem(Icons.description, 'Transaction Feed', onClick: () {
-                  print('Clicou no feed');
+                  _showTransactionsList(context);
                 },),
               ],
             ),
@@ -43,13 +44,20 @@ void _showContactsList(BuildContext context) {
   );
 }
 
-class _FeatureItem extends StatelessWidget {
+void _showTransactionsList(BuildContext context) {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => TransactionsList(),
+    ),
+  );
+}
 
+class _FeatureItem extends StatelessWidget {
   final IconData _icon;
   final String _featureName;
   final Function onClick;
 
-  _FeatureItem(this._icon, this._featureName, {@required this.onClick});
+  _FeatureItem(this._icon, this._featureName, {@required this.onClick}) : assert(_icon != null), assert(onClick != null);
 
   @override
   Widget build(BuildContext context) {
