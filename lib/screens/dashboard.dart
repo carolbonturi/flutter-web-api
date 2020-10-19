@@ -16,11 +16,18 @@ class Dashboard extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Image.asset('images/bytebank_logo.png'),
           ),
-          Row(
-            children: [
-              _FeatureItem(Icons.monetization_on, 'Transfer'),
-              _FeatureItem(Icons.description, 'Transaction Feed')
-            ],
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                _FeatureItem(Icons.monetization_on, 'Transfer', onClick: () {
+                  _showContactsList(context);
+                }),
+                _FeatureItem(Icons.description, 'Transaction Feed', onClick: () {
+                  print('Clicou no feed');
+                },),
+              ],
+            ),
           ),
         ],
       ),
@@ -28,12 +35,21 @@ class Dashboard extends StatelessWidget {
   }
 }
 
+void _showContactsList(BuildContext context) {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => ContactsList(),
+    ),
+  );
+}
+
 class _FeatureItem extends StatelessWidget {
 
   final IconData _icon;
   final String _featureName;
+  final Function onClick;
 
-  _FeatureItem(this._icon, this._featureName);
+  _FeatureItem(this._icon, this._featureName, {@required this.onClick});
 
   @override
   Widget build(BuildContext context) {
@@ -42,13 +58,7 @@ class _FeatureItem extends StatelessWidget {
       child: Material(
         color: Theme.of(context).primaryColor,
         child: InkWell(
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => ContactsList(),
-              ),
-            );
-          },
+          onTap: () => onClick(),
           child: Container(
             padding: EdgeInsets.all(8.0),
             height: 100,
