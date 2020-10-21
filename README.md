@@ -1,6 +1,6 @@
 # bytebank
 
-Flutter project, made along with Alura Flutter Online Course: https://cursos.alura.com.br/course/flutter-web-api.
+Flutter project, made along with both Alura Flutter Online Courses: https://cursos.alura.com.br/course/flutter-web-api and https://cursos.alura.com.br/course/flutter-comunicacao-http/.
 
 ## Getting Started
 
